@@ -44,3 +44,11 @@ class SimpleMetricEmbedding(nn.Module):
         loss = torch.sum(torch.clamp(d_a_p - d_a_n + 1.0, min=0.0))
         return loss
 
+
+class IdentityModel(nn.Module):
+    def __init__(self):
+        super(IdentityModel, self).__init__()
+
+    def get_features(self, img):
+        feats = img.reshape(img.shape[0], -1)
+        return feats
